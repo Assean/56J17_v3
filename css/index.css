@@ -1,1 +1,78 @@
-#
+#home{
+     transition-duration: 700ms;   
+}
+#aboutus{
+     transition-duration: 700ms;   
+}
+#games{
+     transition-duration: 700ms;   
+}
+#email{
+     transition-duration: 700ms;   
+}
+#sitemap{
+     transition-duration: 700ms;   
+}
+#home:hover{
+     border: 1px solid rgb(145, 138, 138);
+     background-color: whitesmoke;
+     border-radius: 20px;
+     font-size: 20px;
+     box-shadow: 4px 3px 2px coral;   
+}
+#aboutus:hover{
+     border: 1px solid rgb(145, 138, 138);
+     background-color: whitesmoke;
+     border-radius: 20px;
+     font-size: 20px;
+     box-shadow: 2px 2px 2px coral;   
+}
+#games:hover{
+     border: 1px solid rgb(145, 138, 138);
+     background-color: whitesmoke;
+     border-radius: 20px;
+     font-size: 20px;
+     box-shadow: 2px 2px 2px coral;   
+}
+#email:hover{
+     border: 1px solid rgb(145, 138, 138);
+     background-color: whitesmoke;
+     border-radius: 20px;
+     font-size: 20px;
+     box-shadow: 2px 2px 2px coral;   
+}
+#sitemap:hover{
+     border: 1px solid rgb(145, 138, 138);
+     background-color: whitesmoke;
+     border-radius: 20px;
+     font-size: 20px;
+     box-shadow: 2px 2px 2px coral;   
+}
+#content{
+    display: flex;
+}
+.sitemap_div{
+    background-color: aliceblue;
+    margin: 10px;
+    font-size: 20px;
+    width: 100px;
+    /* justify-content: center; */
+    /* align-items: center; */
+    transition-duration: 700ms;
+}
+.sitemap_div:hover{
+    background-color: yellowgreen;
+    color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    font-size: 23px;
+    padding: 6px;
+    width: 120px;
+    /* width: auto; */
+    /* height: auto; */
+}
+#emailTable{
+     width: 100%;
+     border: 1px solid black;
+     text-align: center;
+}
