@@ -129,6 +129,7 @@ if($handle){
                     </div>
                     <div>遊戲說明:
                         <?= mb_strlen($game['description']) > 50 ? mb_substr($game['description'], 0, 50) . '...' : $game['description']; ?>
+                        <!-- 大於50個字之後的字全部以...省略 -->
                     </div>
                     <button class="btn btn-primary"
                         onclick="openGame('<?=$game['path'];?>','<?=$game['title'];?>')">開始遊戲</button>
@@ -170,5 +171,6 @@ if($handle){
 
     <script src="by/js/bootstrap.js"></script>
 </body>
+
 
 </html>
