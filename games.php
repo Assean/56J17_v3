@@ -164,7 +164,8 @@ if($handle){
         </div>
 
     </div>
-
+    <!-- 還有一個再玩一次的功能請自己做 -->
+    <!-- 需求:在結束「遊戲」時可以選擇在遊玩⼀次。並所有東西都需重置、分數、姓名需清空。 -->
 
     <div id="footer" class='text-center bg-primary text-white' style="height:45px;line-height:45px">Copyright © 2026
         FunTech. All rights reserved.</div>
@@ -174,3 +175,4 @@ if($handle){
 
 
 </html>
+
