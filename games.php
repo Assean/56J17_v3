@@ -53,6 +53,7 @@ if($handle){
             //進行結果顯示與儲存流程
                 // Jquery語法
                 $("#gameTitle").text(data.game);
+                // 這裡的#gameTitle可以改變gameTitle這個值，但是上方html也要改(兩邊要一樣的ID)
                 // 用 jQuery語法 選取 id 為 gameTitle 的元素
                 //  .text() 設定其內文為 data.game（遊戲名稱）
                 $("#gameStatus").text(data.data.result);
@@ -175,4 +176,5 @@ if($handle){
 
 
 </html>
+
 
