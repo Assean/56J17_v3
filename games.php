@@ -46,6 +46,7 @@ if($handle){
     <script src="by/js/jquery-3.7.1.min.js"></script>
     <script>
         let activeGame;
+        let lastGameUrl;
         // 宣告全域變數 activeGame
         function receiveGameResult(data) {
             //定義函式 receiveGameResult，接收一個 data 物件
@@ -53,7 +54,6 @@ if($handle){
             //進行結果顯示與儲存流程
                 // Jquery語法
                 $("#gameTitle").text(data.game);
-                // 這裡的#gameTitle可以改變gameTitle這個值，但是上方html也要改(兩邊要一樣的ID)
                 // 用 jQuery語法 選取 id 為 gameTitle 的元素
                 //  .text() 設定其內文為 data.game（遊戲名稱）
                 $("#gameStatus").text(data.data.result);
@@ -73,22 +73,29 @@ if($handle){
                 $("#result_modal").modal("show");
                 // 呼叫 Bootstrap Modal 的 .modal("show") 方法
                 // 彈出結果輸入 modal 對話框
+
                 $("#submit_name").one("click", () => {
                     // 為 id 為 submit_name 的按鈕綁定 one 事件（只觸發一次）
                     // 當使用者點擊「確認」按鈕時執行箭頭函式
-                console.log($("#name").val())
-                data['user'] = $("#name").val();
-                // 把使用者從文字輸入框 #name 輸入的姓名值寫入 data 物件的 user 欄位
-                $.post('api/save_result.php', data, (res) => {
-                    // 用 jQuery 的 $.post() 方法
-                    // 以 POST 請求將 data 物件傳送到後端 save_result.php 進行儲存
-                    // 並用箭頭函式處理伺服器回應
-                    alert("遊戲結果已儲存");
-                    $("#name").val("");
-                    // 清空 #name 輸入框
-                    $("#result_modal").modal("hide");
-                    // 隱藏結果 modal，關閉對話框
-                })
+                    console.log($("#name").val())
+                    data['user'] = $("#name").val();
+                    // 把使用者從文字輸入框 #name 輸入的姓名值寫入 data 物件的 user 欄位
+                    $.post('api/save_result.php', data, (res) => {
+                        // 用 jQuery 的 $.post() 方法
+                        // 以 POST 請求將 data 物件傳送到後端 save_result.php 進行儲存
+                        // 並用箭頭函式處理伺服器回應
+                        alert("遊戲結果已儲存");
+                        $("#name").val("");
+                        // 清空 #name 輸入框
+                        // $("#again").modal("hide");
+                        $("#result_modal").modal("hide");
+                        $("#again_modal").modal("show");
+                        $("#again").one("click",()=>{
+                        
+                            openGame(lastGameUrl,activeGame);
+                        })
+                        // 隱藏結果 modal，關閉對話框
+                    })
 
             })
        }
@@ -99,11 +106,14 @@ if($handle){
             activeGame = title
             // 將傳入的 title 儲存到全域變數 activeGame
             // 記錄目前開啟的遊戲
-            window.open(url, 'GameWindow', 'width=800,height=600')
+            lastGameUrl = url;
+            window.open(url, 'GameWindow','width=500,height=500')
             // 開啟新視窗，指定網址為 url、
             // 視窗名稱為 'GameWindow'
             // 寬度 800px 高度 600px
         }
+
+      
 
     </script>
 </head>
@@ -158,15 +168,36 @@ if($handle){
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <!-- <button type="button" id="again" class="btn btn-primary" onclick="openGame('<?=$game['path'];?>','<?=$game['title'];?>')">再玩一次</button> -->
                         <button type="button" id="submit_name" class="btn btn-primary">確認</button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="modal fade" tabindex="-1" id="again_modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">是否再遊玩一次</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    <!-- </div> -->
+                    <!-- <div class="modal-body">
+                        <input type="text" name="name" id="name" class="form-control">
+                    </div> -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">否</button>
+                        <!-- <button type="button" id="again" class="btn btn-primary" onclick="openGame('<?=$game['path'];?>','<?=$game['title'];?>')">再玩一次</button> -->
+                        <button type="button" id="again" class="btn btn-primary" data-dismiss="modal">是</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
 
     </div>
-    <!-- 還有一個再玩一次的功能請自己做 -->
-    <!-- 需求:在結束「遊戲」時可以選擇在遊玩⼀次。並所有東西都需重置、分數、姓名需清空。 -->
+
 
     <div id="footer" class='text-center bg-primary text-white' style="height:45px;line-height:45px">Copyright © 2026
         FunTech. All rights reserved.</div>
@@ -174,7 +205,4 @@ if($handle){
     <script src="by/js/bootstrap.js"></script>
 </body>
 
-
 </html>
-
-
