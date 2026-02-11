@@ -1,5 +1,6 @@
 <?php 
 include_once("pdo.php");
+// 判斷帳號是否存在
 $check_user="SELECT COUNT(*) FROM `users` WHERE account='{$_POST['account']}'";
 $check_num=$pdo->query($check_user)->fetchColumn();
 if($check_num>0){
