@@ -12,7 +12,7 @@ include_once("pdo.php");
 // delete 刪除
 // SELECT 查詢
 $sql="SELECT count(*) FROM `users` WHERE `account`='{$_POST['account']}' AND `password`='{$_POST['password']}'";
-$result=$pdo->query($sql)->fetchAll();
+$result=$pdo->query($sql)->fetchColumn();
 //  $result是抓到的資料筆數
 // fetchColumn 會從 COUNT(*) 查詢中獲取匹配記錄的數量，並存入 $result。
 
